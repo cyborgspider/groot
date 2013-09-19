@@ -26,28 +26,28 @@ module.exports =function(grunt){
       coffee:{
         compile: {
             files: {
-              'site/build/js/scripts.js': ['site/scripts/*.coffee'] // compile and concat into single file
+              'build/js/scripts.js': ['site/scripts/*.coffee'] // compile and concat into single file
             }
           }        
       },
       stylus:{
         compile: {
           files: {
-            'site/build/css/styles.css': ['site/styles/*.styl'] // compile and concat into single file
+            'build/css/styles.css': ['site/styles/*.styl'] // compile and concat into single file
           }
         }
 
       },
       jade:{
-        compile: {
-          options: {
-            data: {
-              debug: false
-            }
-          },
-          files: {
-            "site/build/index.html": ["site/*.jade"]
-          }
+        compile:{
+          options: {pretty:true},
+          files:[{
+            expand: true,
+            cwd:    'site/',
+            src:    "*.jade",
+            ext:    ".html",
+            dest:   "build/"
+          }]
         }
       },
       imagemin:{
@@ -59,7 +59,7 @@ module.exports =function(grunt){
             expand: true,
             cwd:    'site/images/',
             src:    ['**/*.{jpg,gif}'],
-            dest:   'site/build/img/'
+            dest:   'build/img/'
           }]
         }
       }
@@ -74,4 +74,5 @@ module.exports =function(grunt){
      
      //Run the task
      grunt.registerTask('default', ['watch','coffee', 'stylus', 'jade','imagemin']);
+     grunt.registerTask('build', ['coffee', 'stylus', 'jade','imagemin']);
 };
