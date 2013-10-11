@@ -39,6 +39,9 @@ module.exports =function(grunt){
       },       
       stylus:{
         compile: {
+          options:{
+            import:['nib']
+          },
           files: {
             'build/css/styles.css': ['site/styles/*.styl'] // compile and concat into single file
           }
