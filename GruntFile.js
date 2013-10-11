@@ -30,6 +30,13 @@ module.exports =function(grunt){
             }
           }        
       },
+      uglify: {
+        my_target: {
+          files: {
+            'build/js/scripts.min.js': ['build/js/scripts.js']
+          }
+        }
+      },       
       stylus:{
         compile: {
           files: {
@@ -71,8 +78,9 @@ module.exports =function(grunt){
      grunt.loadNpmTasks('grunt-contrib-stylus');
      grunt.loadNpmTasks('grunt-contrib-jade');
      grunt.loadNpmTasks('grunt-contrib-imagemin');
+     grunt.loadNpmTasks('grunt-contrib-uglify');      
      
      //Run the task
-     grunt.registerTask('default', ['watch','coffee', 'stylus', 'jade','imagemin']);
-     grunt.registerTask('build', ['coffee', 'stylus', 'jade','imagemin']);
+     grunt.registerTask('default', ['watch','coffee', 'uglify', 'stylus', 'jade','imagemin']);
+     grunt.registerTask('build', ['coffee', 'stylus', 'uglify',' jade','imagemin']);
 };
